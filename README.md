@@ -2,7 +2,7 @@
 ![ERD-диаграмма](https://github.com/vanilnic/Course_work/blob/main/erd.png)
 
 ## Типовые Запросы
-** 1. Вывести дату последнего выезда из номера 5 **
+**1. Вывести дату последнего выезда из номера 5**
 ```sql
 SELECT departure FROM rooms
 JOIN booking_has_rooms ON rooms.id = booking_has_rooms.rooms_id
