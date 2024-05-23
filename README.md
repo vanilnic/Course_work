@@ -24,7 +24,7 @@ WHERE booking.arrival BETWEEN NOW() AND DATE_ADD(NOW(), INTERVAL 2 WEEK)
 ORDER BY booking.arrival;
 ```
 
-**3. Получить список доступных номеров в период с 2024-05-08 по 2024-05-10**
+**3. Получить список доступных номеров в период с 2024-05-23 по 2024-05-30**
 ```sql
 SELECT number, room_type.title, price_per_night_adult, price_per_night_child
 FROM rooms
@@ -33,7 +33,7 @@ WHERE rooms.id NOT IN (
     SELECT rooms_id
     FROM booking_has_rooms 
     INNER JOIN booking ON booking_has_rooms.booking_id = booking.id
-    WHERE arrival >= '2024-05-08' AND departure <= '2024-05-10'
+    WHERE arrival >= '2024-05-23' AND departure <= '2024-05-30'
 );
 ```
 
