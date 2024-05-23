@@ -14,7 +14,7 @@ LIMIT 1;
 
 **2. Получить список бронирований на ближайшие 2 недели**
 ```sql
-SELECT booking.arrival, booking.departure, booking.total_price, clients.name AS client_name, rooms.number, room_type.title
+SELECT booking.arrival, booking.departure, booking.price_per_room, booking.price_per_servises,  clients.name AS client_name, rooms.number, room_type.title
 FROM booking
 JOIN clients ON booking.client_id = clients.id
 JOIN booking_has_rooms ON booking.id = booking_has_rooms.booking_id
@@ -39,7 +39,7 @@ WHERE rooms.id NOT IN (
 
 **4. Получить информацию по всем бронированиям человека с паспортом 1219111111**
 ```sql
-SELECT room_type.title, quantity_adults, quantity_children, arrival, booking.departure, booking.total_price, rooms.number
+SELECT room_type.title, quantity_adults, quantity_children, arrival, booking.departure, booking.price_per_room, booking.price_per_servises, rooms.number
 FROM clients
 JOIN booking ON booking.client_id = clients.id
 JOIN booking_has_rooms ON booking.id = booking_has_rooms.booking_id
@@ -102,8 +102,8 @@ FLUSH PRIVILEGES;
 > Пользователи с этой ролью могут управлять бронированиями, клиентскими данными, оплатой, а также просматривать доступные номера и информацию о них.
 
 3. Роль: Менеджер отеля (HotelManager)
--- создание роли
 ``` sql
+-- создание роли
 CREATE ROLE IF NOT EXISTS HotelManager;
 
 GRANT SELECT, INSERT, UPDATE, DELETE ON mydb.rooms TO HotelManager;
