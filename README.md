@@ -1,13 +1,14 @@
 # Курсовая работа по теме "Разработка базы данных для бронирования номеров в отеле"
-![ERD-диаграмма](https://github.com/vanilnic/Course_work/blob/main/erd.png)
+![ERD-диаграмма](https://github.com/vanilnic/Course_work/blob/main/erd_final_version.png)
 
 ## Типовые Запросы
-**1. Вывести дату последнего выезда из номера 5**
+**1. Вывести имя, фамилию, паспорт и дату последнего выезда из номера 2**
 ```sql
-SELECT departure FROM rooms
+SELECT rooms.number, clients.name, clients.surname, clients.passport,  departure FROM rooms
 JOIN booking_has_rooms ON rooms.id = booking_has_rooms.rooms_id
 JOIN booking ON booking_has_rooms.booking_id = booking.id
-WHERE rooms_id = 5
+JOIN clients ON booking.client_id = clients.id
+WHERE rooms_id = 2
 ORDER BY departure DESC
 LIMIT 1;
 ```
@@ -24,16 +25,17 @@ WHERE booking.arrival BETWEEN NOW() AND DATE_ADD(NOW(), INTERVAL 2 WEEK)
 ORDER BY booking.arrival;
 ```
 
-**3. Получить список доступных номеров в период с 2024-05-23 по 2024-05-30**
+**3. Получить список доступных номеров в период с 2024-06-12 по 2024-06-14**
 ```sql
 SELECT number, room_type.title, price_per_night_adult, price_per_night_child
 FROM rooms
 JOIN room_type ON room_type.id = rooms.type_room_id
 WHERE rooms.id NOT IN (
-    SELECT rooms_id
-    FROM booking_has_rooms 
+    SELECT DISTINCT rooms.id
+    FROM rooms
+    INNER JOIN booking_has_rooms ON rooms.id = booking_has_rooms.rooms_id
     INNER JOIN booking ON booking_has_rooms.booking_id = booking.id
-    WHERE arrival >= '2024-05-23' AND departure <= '2024-05-30'
+    WHERE NOT (booking.arrival > '2024-06-15 12:00:00' OR booking.departure < '2024-06-12 14:00:00')
 );
 ```
 
@@ -106,38 +108,38 @@ FLUSH PRIVILEGES;
 -- создание роли
 CREATE ROLE IF NOT EXISTS HotelManager;
 
-GRANT SELECT, INSERT, UPDATE, DELETE ON mydb.rooms TO HotelManager;
-GRANT SELECT, INSERT, UPDATE, DELETE ON mydb.room_type TO HotelManager;
-GRANT SELECT, INSERT, UPDATE, DELETE ON mydb.services TO HotelManager;
-GRANT SELECT, INSERT, UPDATE, DELETE ON mydb.options TO HotelManager;
-GRANT SELECT, INSERT, UPDATE, DELETE ON mydb.room_type_has_options TO HotelManager;
+GRANT SELECT, INSERT, UPDATE, DELETE ON course_paper_services.rooms TO HotelManager;
+GRANT SELECT, INSERT, UPDATE, DELETE ON course_paper_services.room_type TO HotelManager;
+GRANT SELECT, INSERT, UPDATE, DELETE ON course_paper_services.services TO HotelManager;
+GRANT SELECT, INSERT, UPDATE, DELETE ON course_paper_services.options TO HotelManager;
+GRANT SELECT, INSERT, UPDATE, DELETE ON course_paper_services.room_type_has_options TO HotelManager;
 ```
 > Пользователи с этой ролью имеют доступ к управлентю номерами
 
 ## Хранимые процедуры
 1. Процедура добавления клиента
 ``` sql
-call course_paper.AddClient('Иван', 'Иванов', 'vanivan@gmail.com', '89001116789', '1921191817', 'male');
+call course_paper_services.AddClient('Иван', 'Иванов', 'vanivan@gmail.com', '89001116789', '1921191817', 'male');
 ```
 > Процедура добавит в таблицу clients имя `Иван`, фамилию `Иванов`, почту `vanivan@gmail.com`, номер телефона `89001116789`, паспорт `1921191817` и пол `male`
 ---
 2. Процедура создания новой брони с выбором дополнительных сервисов
 ``` sql
-   call course_paper_services.AddBooking(1, 1, 0, '2024-06-10', '2024-06-14', 1219111111, 'yes', 'no');
+   call course_paper_services.AddBooking(1, 1, 0, '2024-06-16', '2024-06-20', 1219111111, 'yes', 'no');
 ```
-> Процедура принимает входные параметры: тип комнаты `1`, колличество взрослых `1` и детей `0`, период заселения `2024-06-10` —  `2024-06-14`, паспорт клиента `1219111111`, и добавление дополнительных сервисов 'Wi-Fi' `yes` и 'Поздний выезд' `no`. На выходе мы получаем нове записи в таблицы `booking`, `booking_has_room`, `booking_has_services`
+> Процедура принимает входные параметры: тип комнаты `1`, колличество взрослых `1` и детей `0`, период заселения `2024-06-16` —  `2024-06-20`, паспорт клиента `1219111111`, и добавление дополнительных сервисов 'Wi-Fi' `yes` и 'Поздний выезд' `no`. На выходе мы получаем нове записи в таблицы `booking`, `booking_has_room`, `booking_has_services`
 ---
 3. Процедура добавления дополнительного сервиса для уже существующей брони
 ``` sql
-call course_paper_services.AddService(138, 1);
+call course_paper_services.AddService(148, 2);
 ```
-> Процедура добавит новую запись в таблицу `booking_has_services`, где `138` —  id бронирования, а `1` — id дополнительного сервиса 'Wi-Fi'. Так же она внесёт изменение стоимости в таблицы `payments` и `booking`
+> Процедура добавит новую запись в таблицу `booking_has_services`, где `148` —  id бронирования, а `2` — id дополнительного сервиса 'Поздний выезд'. Так же она внесёт изменение стоимости в таблицы `payments` и `booking`
 ---
 4. Процедура оформления оплаты за номер
 ``` sql
-call course_paper_services.MakeAPayment(138, 'non-cash');
+call course_paper_services.MakeAPayment(148, 'non-cash');
 ```
-> Процедура подтвердит оплату в таблице `payments` с указанием на id бронирования `138` и методом оплаты `non-cash`
+> Процедура подтвердит оплату в таблице `payments` с указанием на id бронирования `148` и методом оплаты `non-cash`
 
 ## Триггер
 **`create_payment_on_booking`** осуществляет свою деятельность после добавления новой записи в таблицу `booking`, а именно, создание новой записи в таблицу `payments` с указанием итоговой суммы и id нового бронирования
