@@ -36,7 +36,7 @@ CREATE TABLE `booking` (
   PRIMARY KEY (`id`),
   KEY `fk_booking_client1_idx` (`client_id`),
   CONSTRAINT `fk_booking_client1` FOREIGN KEY (`client_id`) REFERENCES `clients` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=145 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=153 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,7 +45,7 @@ CREATE TABLE `booking` (
 
 LOCK TABLES `booking` WRITE;
 /*!40000 ALTER TABLE `booking` DISABLE KEYS */;
-INSERT INTO `booking` VALUES (137,1,0,'2024-05-24 14:00:00','2024-05-25 12:00:00',1,1000.00,0.00,'2024-05-23 12:51:30',1),(138,1,0,'2024-05-24 14:00:00','2024-05-25 12:00:00',1,1000.00,0.00,'2024-05-23 12:51:47',2),(139,3,0,'2024-05-28 14:00:00','2024-05-30 12:00:00',2,15600.00,1000.00,'2024-05-23 12:52:26',2),(140,1,0,'2024-05-26 14:00:00','2024-05-30 12:00:00',4,12000.00,1000.00,'2024-05-23 12:53:01',7),(141,1,0,'2024-06-01 14:00:00','2024-06-03 18:00:00',2,2000.00,2500.00,'2024-05-23 12:54:25',13),(142,1,0,'2024-06-02 14:00:00','2024-06-03 18:00:00',1,1000.00,2500.00,'2024-05-23 12:55:04',8),(143,1,0,'2024-06-02 14:00:00','2024-06-03 18:00:00',1,1400.00,2500.00,'2024-05-23 12:55:37',14),(144,1,0,'2024-06-02 14:00:00','2024-06-03 18:00:00',1,1400.00,2500.00,'2024-05-23 12:55:39',14);
+INSERT INTO `booking` VALUES (137,1,0,'2024-05-24 14:00:00','2024-05-25 12:00:00',1,1000.00,0.00,'2024-05-23 12:51:30',1),(138,1,0,'2024-05-24 14:00:00','2024-05-25 12:00:00',1,1000.00,0.00,'2024-05-23 12:51:47',2),(139,3,0,'2024-05-28 14:00:00','2024-05-30 12:00:00',2,15600.00,1000.00,'2024-05-23 12:52:26',2),(140,1,0,'2024-05-26 14:00:00','2024-05-30 12:00:00',4,12000.00,1000.00,'2024-05-23 12:53:01',7),(141,1,0,'2024-06-01 14:00:00','2024-06-03 18:00:00',2,2000.00,2500.00,'2024-05-23 12:54:25',13),(142,1,0,'2024-06-02 14:00:00','2024-06-03 18:00:00',1,1000.00,2500.00,'2024-05-23 12:55:04',8),(143,1,0,'2024-06-02 14:00:00','2024-06-03 18:00:00',1,1400.00,2500.00,'2024-05-23 12:55:37',14),(144,1,0,'2024-06-02 14:00:00','2024-06-03 18:00:00',1,1400.00,2500.00,'2024-05-23 12:55:39',14),(145,1,0,'2024-06-12 14:00:00','2024-06-14 12:00:00',2,2000.00,2500.00,'2024-06-11 12:03:58',21),(146,1,0,'2024-06-10 14:00:00','2024-06-14 12:00:00',2,4000.00,1000.00,'2024-06-11 16:47:04',21),(147,1,0,'2024-06-30 14:00:00','2024-07-01 12:00:00',1,3000.00,1000.00,'2024-06-11 16:47:47',21),(148,1,0,'2024-06-30 14:00:00','2024-07-01 12:00:00',1,3000.00,1000.00,'2024-06-11 16:48:10',1),(150,1,1,'2024-06-12 14:00:00','2024-06-15 12:00:00',3,12600.00,1000.00,'2024-06-11 16:57:19',2),(151,1,0,'2024-06-10 14:00:00','2024-06-15 12:00:00',3,7000.00,1000.00,'2024-06-11 17:00:26',2),(152,1,0,'2024-06-12 14:00:00','2024-06-15 12:00:00',3,6600.00,0.00,'2024-06-11 17:04:16',3);
 /*!40000 ALTER TABLE `booking` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -97,7 +97,7 @@ CREATE TABLE `booking_has_rooms` (
 
 LOCK TABLES `booking_has_rooms` WRITE;
 /*!40000 ALTER TABLE `booking_has_rooms` DISABLE KEYS */;
-INSERT INTO `booking_has_rooms` VALUES (137,1),(141,1),(138,2),(142,2),(143,3),(144,4),(139,9),(140,11);
+INSERT INTO `booking_has_rooms` VALUES (137,1),(141,1),(145,1),(138,2),(142,2),(146,2),(143,3),(151,3),(144,4),(150,7),(152,8),(139,9),(140,11),(147,11),(148,12);
 /*!40000 ALTER TABLE `booking_has_rooms` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -125,7 +125,7 @@ CREATE TABLE `booking_has_services` (
 
 LOCK TABLES `booking_has_services` WRITE;
 /*!40000 ALTER TABLE `booking_has_services` DISABLE KEYS */;
-INSERT INTO `booking_has_services` VALUES (1,139),(1,140),(1,141),(2,141),(1,142),(2,142),(1,143),(2,143),(1,144),(2,144);
+INSERT INTO `booking_has_services` VALUES (1,139),(1,140),(1,141),(2,141),(1,142),(2,142),(1,143),(2,143),(1,144),(2,144),(1,145),(2,145),(1,146),(1,147),(1,148),(1,150),(1,151);
 /*!40000 ALTER TABLE `booking_has_services` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -142,13 +142,13 @@ CREATE TABLE `clients` (
   `surname` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `phone` varchar(20) NOT NULL,
-  `passport` varchar(20) NOT NULL,
+  `passport` char(10) NOT NULL,
   `gender` enum('male','female') DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `passport_UNIQUE` (`passport`),
   UNIQUE KEY `email_UNIQUE` (`email`),
   UNIQUE KEY `phone_UNIQUE` (`phone`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -157,7 +157,7 @@ CREATE TABLE `clients` (
 
 LOCK TABLES `clients` WRITE;
 /*!40000 ALTER TABLE `clients` DISABLE KEYS */;
-INSERT INTO `clients` VALUES (1,'Иван','Иванов','ivan@example.com','89123456789','1219111111','male'),(2,'Елена','Петрова','elena@example.com','89234567890','1219222222','female'),(3,'Алексей','Сидоров','alex@example.com','89345678901','1418111111','male'),(4,'Мария','Смирнова','maria@example.com','89456789012','1418222222','female'),(5,'Петр','Кузнецов','petr@example.com','89567890123','1010111111','male'),(6,'Анна','Павлова','anna@example.com','89678901234','1010222222','female'),(7,'Игорь','Федоров','igor@example.com','89789012345','1921111111','male'),(8,'Ольга','Михайлова','olga@example.com','89890123456','1921222222','female'),(9,'Дмитрий','Васильев','dmitry@example.com','89901234567','2120111111','male'),(10,'Светлана','Александрова','svetlana@example.com','89012345678','2120222222','female'),(11,'Виктория','Богданова','bika@gmail.com','89001117788','1212111111','female'),(13,'Виктор','Богданов','bikaa@gmail.com','89112345678','1212222222','male'),(14,'Пётр','Петров','petr@gmail.com','89002345678','1313444444','male'),(15,'Пётр','Петров','petrr@gmail.com','89102345678','2222444555','male'),(16,'Алексей','Иванов','ioan@gmail.com','89102345634','1212236781','male'),(17,'Максим','Орлов','qweqwe@gmail.com','89001116143','1212345678','male'),(18,'Максим','Орлов','max@gmail.com','89051116143','1219111112','male'),(19,'Ваня','Иванов','123@gmail','89067778965','1122345678','male');
+INSERT INTO `clients` VALUES (1,'Иван','Иванов','ivan@example.com','89123456789','1219111111','male'),(2,'Елена','Петрова','elena@example.com','89234567890','1219222222','female'),(3,'Алексей','Сидоров','alex@example.com','89345678901','1418111111','male'),(4,'Мария','Смирнова','maria@example.com','89456789012','1418222222','female'),(5,'Петр','Кузнецов','petr@example.com','89567890123','1010111111','male'),(6,'Анна','Павлова','anna@example.com','89678901234','1010222222','female'),(7,'Игорь','Федоров','igor@example.com','89789012345','1921111111','male'),(8,'Ольга','Михайлова','olga@example.com','89890123456','1921222222','female'),(9,'Дмитрий','Васильев','dmitry@example.com','89901234567','2120111111','male'),(10,'Светлана','Александрова','svetlana@example.com','89012345678','2120222222','female'),(11,'Виктория','Богданова','bika@gmail.com','89001117788','1212111111','female'),(13,'Виктор','Богданов','bikaa@gmail.com','89112345678','1212222222','male'),(14,'Пётр','Петров','petr@gmail.com','89002345678','1313444444','male'),(15,'Пётр','Петров','petrr@gmail.com','89102345678','2222444555','male'),(16,'Алексей','Иванов','ioan@gmail.com','89102345634','1212236781','male'),(17,'Максим','Орлов','qweqwe@gmail.com','89001116143','1212345678','male'),(18,'Максим','Орлов','max@gmail.com','89051116143','1219111112','male'),(19,'Ваня','Иванов','123@gmail','89067778965','1122345678','male'),(20,'Алексей','Иванов','Ivaan@gmail.com','89018765599','1212666666','male'),(21,'Виктор','Иванов','viktor@gmail.com','89001116187','1111222233','male');
 /*!40000 ALTER TABLE `clients` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -231,7 +231,7 @@ CREATE TABLE `payments` (
   PRIMARY KEY (`id`),
   KEY `fk_payments_booking1_idx` (`booking_id`),
   CONSTRAINT `fk_payments_booking1` FOREIGN KEY (`booking_id`) REFERENCES `booking` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -240,7 +240,7 @@ CREATE TABLE `payments` (
 
 LOCK TABLES `payments` WRITE;
 /*!40000 ALTER TABLE `payments` DISABLE KEYS */;
-INSERT INTO `payments` VALUES (14,1000.00,NULL,NULL,137),(15,1000.00,NULL,NULL,138),(16,16600.00,NULL,NULL,139),(17,13000.00,NULL,NULL,140),(18,4500.00,NULL,NULL,141),(19,3500.00,NULL,NULL,142),(20,3900.00,NULL,NULL,143),(21,3900.00,NULL,NULL,144);
+INSERT INTO `payments` VALUES (14,1000.00,'2024-05-25 00:00:00','cash',137),(15,1000.00,'2024-05-25 00:00:00','cash',138),(16,16600.00,'2024-05-30 00:00:00','cash',139),(17,13000.00,'2024-05-30 00:00:00','cash',140),(18,4500.00,'2024-06-03 00:00:00','cash',141),(19,3500.00,'2024-06-03 00:00:00','cash',142),(20,3900.00,'2024-06-03 00:00:00','cash',143),(21,3900.00,'2024-06-03 00:00:00','cash',144),(22,4500.00,'2024-06-11 12:10:03','cash',145),(23,5000.00,NULL,NULL,146),(24,4000.00,NULL,NULL,147),(25,4000.00,NULL,NULL,148),(27,13600.00,NULL,NULL,150),(28,8000.00,NULL,NULL,151),(29,6600.00,NULL,NULL,152);
 /*!40000 ALTER TABLE `payments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -539,6 +539,92 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `AddClient` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `AddClient`(
+IN p_name VARCHAR(255),
+    IN p_surname VARCHAR(255),
+    IN p_email VARCHAR(255),
+    IN p_phone VARCHAR(20),
+    IN p_passport VARCHAR(20),
+    IN p_gender ENUM('male', 'female'))
+BEGIN
+    DECLARE client_id INT;
+    DECLARE error_message VARCHAR(255);
+    
+-- Проверка наличия клиента в базе по всем параметрам
+    SELECT id INTO client_id FROM clients
+    WHERE name = p_name
+    AND surname = p_surname
+    AND email = p_email
+    AND phone = p_phone
+    AND passport = p_passport
+    AND gender = p_gender;
+
+-- Если клиент с такими параметрами уже существует, генерируем сообщение об ошибке
+    IF client_id IS NOT NULL THEN
+    SELECT client_id as 'Дубль';
+        SET error_message = 'Клиент с такими же данными уже существует';
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = error_message;
+    END IF;
+
+-- Проверка уникальности паспорта
+    SELECT id INTO client_id FROM clients
+    WHERE passport = p_passport;
+
+    IF client_id IS NOT NULL THEN
+    SELECT client_id as 'id с паспортом';
+        SET error_message = 'Клиент с таким паспортом уже существует';
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = error_message;
+    END IF;
+
+-- Проверка уникальности почты
+    SELECT id INTO client_id FROM clients
+    WHERE email = p_email;
+
+    IF client_id IS NOT NULL THEN
+    SELECT client_id as 'id с почтой';
+        SET error_message = 'Клиент с такой почтой уже существует';
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = error_message;
+    END IF;
+
+-- Проверка уникальности номера телефона
+    SELECT id INTO client_id FROM clients
+    WHERE phone = p_phone;
+
+    IF client_id IS NOT NULL THEN
+    SELECT client_id as 'id с телефоном';
+        SET error_message = 'Клиент с таким номером телефона уже существует';
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = error_message;
+    END IF;
+
+-- Вставка нового клиента в таблицу
+    INSERT INTO clients (name, surname, email, phone, passport, gender)
+    VALUES (p_name, p_surname, p_email, p_phone, p_passport, p_gender);
+
+-- Получаем идентификатор только что добавленного клиента
+    SELECT LAST_INSERT_ID() INTO client_id;
+
+-- Вывод идентификатора нового клиента
+    SELECT client_id AS 'New Client ID';
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `AddService` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -691,4 +777,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-23 13:01:12
+-- Dump completed on 2024-06-11 17:08:59
