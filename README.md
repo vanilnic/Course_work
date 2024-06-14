@@ -91,6 +91,7 @@ GRANT SELECT ON course_paper_services.options TO BookingManager;
 GRANT EXECUTE ON PROCEDURE course_paper_services.AddBooking TO BookingManager;
 GRANT EXECUTE ON PROCEDURE course_paper_services.AddService TO BookingManager;
 GRANT EXECUTE ON PROCEDURE course_paper_services.MakePayment TO BookingManager;
+GRANT EXECUTE ON PROCEDURE course_paper_services.AddClient TO BookingManager;
 
 GRANT EXECUTE ON FUNCTION course_paper_services.calculate_total_payment TO BookingManager;
 
