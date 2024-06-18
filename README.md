@@ -86,6 +86,7 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON course_paper_services.payments TO Bookin
 GRANT SELECT ON course_paper_services.rooms TO BookingManager;
 GRANT SELECT ON course_paper_services.room_type TO BookingManager;
 GRANT SELECT ON course_paper_services.services TO BookingManager;
+GRANT SELECT ON course_paper_services.room_type_has_options TO BookingManager;
 GRANT SELECT ON course_paper_services.options TO BookingManager;
 
 GRANT EXECUTE ON PROCEDURE course_paper_services.AddBooking TO BookingManager;
@@ -94,13 +95,6 @@ GRANT EXECUTE ON PROCEDURE course_paper_services.MakePayment TO BookingManager;
 GRANT EXECUTE ON PROCEDURE course_paper_services.AddClient TO BookingManager;
 
 GRANT EXECUTE ON FUNCTION course_paper_services.calculate_total_payment TO BookingManager;
-
--- создание пользователя
-CREATE USER IF NOT EXISTS 'booking_manager'@'localhost' IDENTIFIED BY 'BookingPassword';
-GRANT BookingManager TO 'booking_manager'@'localhost';
-SET DEFAULT ROLE BookingManager TO 'room_manager'@'localhost';
-
-FLUSH PRIVILEGES;
 ```
 > Пользователи с этой ролью могут управлять бронированиями, клиентскими данными, оплатой, а также просматривать доступные номера и информацию о них.
 
