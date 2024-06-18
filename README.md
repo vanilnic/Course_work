@@ -1,5 +1,5 @@
 # Курсовая работа по теме "Разработка базы данных для бронирования номеров в отеле"
-![ERD-диаграмма](https://github.com/vanilnic/Course_work/blob/main/erd_final_version.png)
+![ERD-диаграмма](https://github.com/vanilnic/Course_work/blob/main/erd.png)
 
 ## Типовые Запросы
 **1. Вывести имя, фамилию, паспорт и дату последнего выезда из номера 2**
